@@ -16,6 +16,7 @@ class Student
     
     DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
+    end
   end
 
   def self.find_by_name(name)
@@ -25,7 +26,9 @@ class Student
     
     DB[:conn].execute(sql, name).map do |row|
       self.new_from_db(row)
-  end
+    end
+  end 
+  
   
   def self.all_students_in_grade_9
     sql = <<-SQL
@@ -34,7 +37,7 @@ class Student
     
     DB[:conn].execute(sql, grade).map do |row|
       self.new_from_db(row)
-    
+    end 
   end   
   
   def self.students_below_12th_grade
@@ -44,6 +47,7 @@ class Student
     
     DB[:conn].execute(sql, grade).map do |row|
       self.new_from_db(row)
+    end  
   end   
   
   def self.first_X_in_grade_10(x)
@@ -53,9 +57,12 @@ class Student
     
     DB[:conn].execute(sql, grade).map do |row|
       self.new_from_db(row)
-  end 
+    end 
+  end   
   
   def self.first_student_in_grade_10
+    
+  end   
   
   def save
     sql = <<-SQL
@@ -64,7 +71,8 @@ class Student
     SQL
 
     DB[:conn].execute(sql, self.name, self.grade)
-  end
+    
+  end   
   
   def self.create_table
     sql = <<-SQL
